@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPE21S4 — Data Structures and Algorithms Activity Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ghDark: '#0d1117',
+                        ghCard: '#161b22',
+                        ghBorder: '#30363d',
+                        ghBlue: '#238636',
+                        accentBlue: '#2f81f7',
+                        accentGreen: '#3fb950',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        mono: ['Fira Code', 'Consolas', 'Monaco', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar for GitHub aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #484f58;
+        }
+    </style>
+</head>
+<body class="bg-[#0d1117] text-gray-200 font-sans min-h-screen pb-12 antialiased selection:bg-accentBlue selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-ghBorder bg-[#161b22]/80 backdrop-blur sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <i data-lucide="terminal" class="w-6 h-6 text-accentBlue"></i>
+                <span class="font-bold text-lg tracking-wide text-white">CPE Activity Hub</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-accentBlue/20 text-accentBlue border border-accentBlue/30 font-mono">v2.0</span>
+            </div>
+            
+            <div class="flex items-center space-x-3">
+                <button id="exportMarkdownBtn" onclick="toggleMarkdownModal()" class="flex items-center space-x-2 bg-accentBlue hover:bg-blue-600 text-white px-3.5 py-1.5 rounded-lg text-sm font-medium transition shadow-sm">
+                    <i data-lucide="file-code" class="w-4 h-4"></i>
+                    <span>Copy README.md Code</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
+
+        <!-- Course Header Section (Aligned with user's README layout) -->
+        <section class="text-center space-y-4">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                CPE21S4 — DATA STRUCTURES AND ALGORITHMS
+            </h1>
+            <h3 class="text-gray-400 text-lg font-medium">Hands-On Activities Compilation</h3>
+            
+            <!-- Cat GIF Embed using user's file path -->
+            <div class="inline-block relative group rounded-xl overflow-hidden border border-ghBorder bg-ghCard p-2 shadow-xl my-2">
+                <img id="headerCatGif" src="./Cat%20Coding%20GIF.gif" 
+                     onerror="this.onerror=null; this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2cGZxdXNocHNpdmJic3puaG0ydmZhMHNhbWttNWRidm9oZnBzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JIX9t2j0ZTN9S/giphy.gif';"
+                     alt="Cat Coding GIF" class="w-[200px] h-auto object-cover rounded-lg mx-auto">
+            </div>
+
+            <div class="w-full border-b border-ghBorder my-4"></div>
+        </section>
+
+        <!-- Stats Overview Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-ghCard border border-ghBorder rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-md hover:border-accentGreen/50 transition">
+                <div class="w-10 h-10 rounded-full bg-accentGreen/10 border border-accentGreen/30 flex items-center justify-center text-accentGreen mb-2">
+                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl font-bold text-white" id="completionStat">100%</div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">Completed</div>
+            </div>
+
+            <div class="bg-ghCard border border-ghBorder rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-md hover:border-accentBlue/50 transition">
+                <div class="w-10 h-10 rounded-full bg-accentBlue/10 border border-accentBlue/30 flex items-center justify-center text-accentBlue mb-2">
+                    <i data-lucide="folder" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl font-bold text-white">3</div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">Periods</div>
+            </div>
+
+            <div class="bg-ghCard border border-ghBorder rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-md hover:border-purple-500/50 transition">
+                <div class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-2">
+                    <i data-lucide="code" class="w-6 h-6"></i>
+                </div>
+                <div class="text-2xl font-bold text-white" id="totalProjectsStat">CPE</div>
+                <div class="text-xs text-gray-400 font-medium uppercase tracking-wider mt-1">Projects & HOAs</div>
+            </div>
+        </section>
+
+        <!-- About & Objectives Section (Matching exact README text) -->
+        <section class="bg-ghCard border border-ghBorder rounded-xl p-6 space-y-6">
+            <div>
+                <h2 class="text-xl font-bold text-white flex items-center space-x-2 border-b border-ghBorder pb-3">
+                    <i data-lucide="info" class="w-5 h-5 text-accentBlue"></i>
+                    <span>About This Repository</span>
+                </h2>
+                <div class="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 space-y-3">
+                    <p>
+                        This repository contains my Hands-On Activities (HOA) for CPE010: Data Structures and Algorithms. It includes the C++ outputs, screenshots, analysis, and conclusions. Each activity reflects my understanding of the lessons discussed in class.
+                    </p>
+                    <p>
+                        This compilation also serves as a record of my progress in developing programming skills, improving my problem-solving abilities, and understanding how data structures and algorithms work.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-white flex items-center space-x-2 border-b border-ghBorder pb-3">
+                    <i data-lucide="target" class="w-5 h-5 text-accentGreen"></i>
+                    <span>Objectives</span>
+                </h2>
+                <ul class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-300">
+                    <li class="flex items-start space-x-2 bg-[#0d1117] p-3 rounded-lg border border-ghBorder">
+                        <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0 mt-0.5"></i>
+                        <span>Apply the programming concepts and techniques discussed in class.</span>
+                    </li>
+                    <li class="flex items-start space-x-2 bg-[#0d1117] p-3 rounded-lg border border-ghBorder">
+                        <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0 mt-0.5"></i>
+                        <span>Develop a better understanding of data structures and algorithms.</span>
+                    </li>
+                    <li class="flex items-start space-x-2 bg-[#0d1117] p-3 rounded-lg border border-ghBorder">
+                        <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0 mt-0.5"></i>
+                        <span>Organize and document completed activities for easy reference.</span>
+                    </li>
+                    <li class="flex items-start space-x-2 bg-[#0d1117] p-3 rounded-lg border border-ghBorder">
+                        <i data-lucide="check" class="w-4 h-4 text-accentGreen shrink-0 mt-0.5"></i>
+                        <span>Track my learning progress throughout the course.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Explore Activities Interactive Tab Hub -->
+        <section class="space-y-6">
+            <div>
+                <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <i data-lucide="folder-tree" class="w-5 h-5 text-accentBlue"></i>
+                    <span>Explore Activities</span>
+                </h2>
+                <p class="text-sm text-gray-400 mt-1">Select a period to explore its HOA activities.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="grid grid-cols-3 gap-3">
+                <button onclick="switchTab('prelims')" id="tab-prelims" 
+                        class="tab-btn active-tab flex flex-col items-center justify-center p-4 rounded-xl border transition duration-200">
+                    <i data-lucide="folder" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm tracking-wide">PRELIMS</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 mt-1 opacity-70"></i>
+                </button>
+
+                <button onclick="switchTab('midterms')" id="tab-midterms" 
+                        class="tab-btn inactive-tab flex flex-col items-center justify-center p-4 rounded-xl border transition duration-200">
+                    <i data-lucide="folder" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm tracking-wide">MIDTERMS</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 mt-1 opacity-70"></i>
+                </button>
+
+                <button onclick="switchTab('finals')" id="tab-finals" 
+                        class="tab-btn inactive-tab flex flex-col items-center justify-center p-4 rounded-xl border transition duration-200">
+                    <i data-lucide="folder" class="w-6 h-6 mb-1"></i>
+                    <span class="font-bold text-sm tracking-wide">FINALS</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 mt-1 opacity-70"></i>
+                </button>
+            </div>
+
+            <!-- Activities Content Area -->
+            <div class="bg-ghCard border border-ghBorder rounded-xl p-6 space-y-4">
+                <div class="flex items-center justify-between border-b border-ghBorder pb-3">
+                    <h3 id="periodTitle" class="text-lg font-bold text-white tracking-wide uppercase">PRELIMS Activities</h3>
+                    <span id="periodBadge" class="text-xs bg-accentGreen/20 text-accentGreen border border-accentGreen/30 px-2.5 py-1 rounded-full font-medium">5 Activities</span>
+                </div>
+
+                <!-- List of HOAs -->
+                <div id="activityList" class="space-y-2">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <div class="pt-2 text-xs text-gray-500 italic">
+                    Interactive mockup only — click any activity to view code and analysis details.
+                </div>
+            </div>
+        </section>
+
+        <!-- Centered Footer Quote (Matches README footer) -->
+        <footer class="text-center pt-6 border-t border-ghBorder">
+            <p class="text-sm italic text-gray-400">
+                "Every activity is an opportunity to learn, develop new skills, and become a better programmer."
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- Activity Details Modal -->
+    <div id="activityModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-ghCard border border-ghBorder rounded-xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-ghBorder flex items-center justify-between bg-[#0d1117]">
+                <div class="flex items-center space-x-3">
+                    <i data-lucide="code-2" class="w-5 h-5 text-accentBlue"></i>
+                    <h3 id="modalTitle" class="text-lg font-bold text-white">HOA Activity Details</h3>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-ghBorder transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 overflow-y-auto space-y-6 text-sm text-gray-300">
+                <!-- Overview -->
+                <div>
+                    <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Description</h4>
+                    <p id="modalDesc" class="text-gray-200 leading-relaxed"></p>
+                </div>
+
+                <!-- Status & Category -->
+                <div class="flex space-x-4">
+                    <div class="bg-[#0d1117] border border-ghBorder p-3 rounded-lg flex-1">
+                        <div class="text-xs text-gray-400">Status</div>
+                        <div id="modalStatus" class="font-semibold text-accentGreen mt-0.5">Completed</div>
+                    </div>
+                    <div class="bg-[#0d1117] border border-ghBorder p-3 rounded-lg flex-1">
+                        <div class="text-xs text-gray-400">Topic / Category</div>
+                        <div id="modalTopic" class="font-semibold text-white mt-0.5">Data Structures</div>
+                    </div>
+                </div>
+
+                <!-- Code Preview -->
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">C++ Implementation Code</h4>
+                        <button onclick="copyCode()" class="text-xs text-accentBlue hover:underline flex items-center space-x-1">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy Code</span>
+                        </button>
+                    </div>
+                    <pre class="bg-[#0d1117] border border-ghBorder rounded-lg p-4 font-mono text-xs text-emerald-400 overflow-x-auto max-h-48" id="modalCode"></pre>
+                </div>
+
+                <!-- Analysis & Conclusion -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-[#0d1117] border border-ghBorder p-4 rounded-lg">
+                        <h5 class="font-semibold text-white mb-1 flex items-center space-x-1.5">
+                            <i data-lucide="bar-chart-2" class="w-4 h-4 text-accentBlue"></i>
+                            <span>Analysis</span>
+                        </h5>
+                        <p id="modalAnalysis" class="text-xs text-gray-400 leading-relaxed"></p>
+                    </div>
+                    <div class="bg-[#0d1117] border border-ghBorder p-4 rounded-lg">
+                        <h5 class="font-semibold text-white mb-1 flex items-center space-x-1.5">
+                            <i data-lucide="check-square" class="w-4 h-4 text-accentGreen"></i>
+                            <span>Conclusion</span>
+                        </h5>
+                        <p id="modalConclusion" class="text-xs text-gray-400 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-ghBorder bg-[#0d1117] flex justify-end">
+                <button onclick="closeModal()" class="px-4 py-2 bg-ghBorder hover:bg-gray-700 text-white text-xs font-semibold rounded-lg transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Markdown Modal -->
+    <div id="markdownModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-ghCard border border-ghBorder rounded-xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-ghBorder flex items-center justify-between bg-[#0d1117]">
+                <div class="flex items-center space-x-3">
+                    <i data-lucide="file-text" class="w-5 h-5 text-accentBlue"></i>
+                    <h3 class="text-lg font-bold text-white">Generated README.md Code</h3>
+                </div>
+                <button onclick="toggleMarkdownModal()" class="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-ghBorder transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-4 overflow-y-auto flex-1 space-y-3">
+                <p class="text-xs text-gray-400">Copy the markdown text below directly into your GitHub repository's <code>README.md</code> file.</p>
+                <div class="relative">
+                    <button onclick="copyMarkdownText()" class="absolute top-3 right-3 bg-accentBlue hover:bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium flex items-center space-x-1 shadow">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span id="copyMdBtnText">Copy Markdown</span>
+                    </button>
+                    <textarea id="markdownOutput" readonly class="w-full h-96 bg-[#0d1117] border border-ghBorder rounded-lg p-4 font-mono text-xs text-gray-300 focus:outline-none focus:border-accentBlue resize-none"></textarea>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-ghBorder bg-[#0d1117] flex justify-end">
+                <button onclick="toggleMarkdownModal()" class="px-4 py-2 bg-ghBorder hover:bg-gray-700 text-white text-xs font-semibold rounded-lg transition">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-accentGreen text-slate-950 font-semibold px-4 py-2.5 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 z-50 text-sm">
+        <i data-lucide="check-circle" class="w-4 h-4"></i>
+        <span id="toastMsg">Copied to clipboard!</span>
+    </div>
+
+    <script>
+        // --- Data Model for Hands-On Activities ---
+        const activityData = {
+            prelims: [
+                {
+                    id: "hoa-1",
+                    title: "HOA 1.1",
+                    name: "Introduction to C++ Arrays & Memory",
+                    status: "Completed",
+                    topic: "Arrays",
+                    desc: "Implementation of 1D contiguous arrays and memory allocation analysis.",
+                    code: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int arr[5] = {10, 20, 30, 40, 50};\n    for(int i = 0; i < 5; i++) cout << arr[i] << " ";\n    return 0;\n}`,
+                    analysis: "Array elements are stored in contiguous memory addresses.",
+                    conclusion: "Understood static memory allocation and indexed access."
+                },
+                {
+                    id: "hoa-2",
+                    title: "HOA 2.1",
+                    name: "Pointers and Dynamic Allocation",
+                    status: "Completed",
+                    topic: "Pointers",
+                    desc: "Dynamic memory allocation using new/delete keywords.",
+                    code: `int* arr = new int[10];\ndelete[] arr;`,
+                    analysis: "Dynamic memory avoids fixed size limitations at compile-time.",
+                    conclusion: "Mastered dynamic heap allocation and pointer arithmetic."
+                },
+                {
+                    id: "hoa-3",
+                    title: "HOA 3.1",
+                    name: "Singly Linked List Implementation",
+                    status: "Completed",
+                    topic: "Linked List",
+                    desc: "Creating, inserting, traversing singly linked lists.",
+                    code: `struct Node { int data; Node* next; };`,
+                    analysis: "Linked lists allow dynamic insertion without reallocating contiguous memory.",
+                    conclusion: "Successfully built node-based dynamic linear structures."
+                },
+                {
+                    id: "hoa-4",
+                    title: "HOA 4.1",
+                    name: "Doubly Linked List Structure",
+                    status: "Completed",
+                    topic: "Linked List",
+                    desc: "Node traversal with previous and next pointers.",
+                    code: `struct Node { int data; Node *next, *prev; };`,
+                    analysis: "Doubly linked lists enable bidirectional navigation at the expense of extra memory.",
+                    conclusion: "Implemented doubly linked list insertion and deletion logic."
+                },
+                {
+                    id: "hoa-5",
+                    title: "HOA 5.1",
+                    name: "Stack ADT Implementation",
+                    status: "Completed",
+                    topic: "Stack",
+                    desc: "LIFO structure implementation via arrays and linked lists.",
+                    code: `void push(int val) { stack[++top] = val; }`,
+                    analysis: "Stacks provide guaranteed O(1) push and pop operations.",
+                    conclusion: "Applied LIFO concepts to expression evaluations."
+                }
+            ],
+            midterms: [
+                {
+                    id: "hoa-6",
+                    title: "HOA 6.1",
+                    name: "Queue ADT & Circular Queue",
+                    status: "Completed",
+                    topic: "Queue",
+                    desc: "FIFO structure and circular index pointer optimization.",
+                    code: `void enqueue(int val) { rear = (rear + 1) % SIZE; }`,
+                    analysis: "Circular queues overcome space waste in linear array queues.",
+                    conclusion: "Designed efficient linear FIFO buffer routines."
+                },
+                {
+                    id: "hoa-7",
+                    title: "HOA 7.1",
+                    name: "Recursion & Backtracking",
+                    status: "Completed",
+                    topic: "Recursion",
+                    desc: "Solving recursive mathematical and pathfinding problems.",
+                    code: `int fib(int n) { return n <= 1 ? n : fib(n-1) + fib(n-2); }`,
+                    analysis: "Recursive calls use stack call frames to store state.",
+                    conclusion: "Formulated recursive algorithms with base termination cases."
+                },
+                {
+                    id: "hoa-8",
+                    title: "HOA 8.1",
+                    name: "Elementary Sorting Algorithms",
+                    status: "Completed",
+                    topic: "Sorting",
+                    desc: "Bubble, Selection, and Insertion Sort implementations.",
+                    code: `if(arr[j] > arr[j+1]) swap(arr[j], arr[j+1]);`,
+                    analysis: "Elementary sorts run in O(n^2) time complexity.",
+                    conclusion: "Benchmarked key swaps and comparisons across algorithms."
+                },
+                {
+                    id: "hoa-9",
+                    title: "HOA 9.1",
+                    name: "Advanced Sorting (Quick & Merge)",
+                    status: "Completed",
+                    topic: "Divide & Conquer",
+                    desc: "Logarithmic O(n log n) sorting algorithms.",
+                    code: `void mergeSort(int arr[], int l, int r) { ... }`,
+                    analysis: "Divide and conquer significantly improves sorting speed on large datasets.",
+                    conclusion: "Implemented sub-problem partitioning and recursive merging."
+                },
+                {
+                    id: "hoa-10",
+                    title: "HOA 10.1",
+                    name: "Searching Algorithms",
+                    status: "Completed",
+                    topic: "Searching",
+                    desc: "Linear vs Binary Search implementation.",
+                    code: `int binarySearch(int arr[], int l, int r, int x) { ... }`,
+                    analysis: "Binary search achieves O(log n) performance on pre-sorted arrays.",
+                    conclusion: "Mastered iterative logarithmic search procedures."
+                }
+            ],
+            finals: [
+                {
+                    id: "hoa-11",
+                    title: "HOA 11.1",
+                    name: "Binary Search Tree (BST)",
+                    status: "Completed",
+                    topic: "Trees",
+                    desc: "BST creation, key insertion, and tree traversals.",
+                    code: `struct Node { int key; Node *left, *right; };`,
+                    analysis: "BST operations run in O(h) time where h is the tree height.",
+                    conclusion: "Constructed tree traversals (In-order, Pre-order, Post-order)."
+                },
+                {
+                    id: "hoa-12",
+                    title: "HOA 12.1",
+                    name: "Heap Data Structure",
+                    status: "Completed",
+                    topic: "Heaps",
+                    desc: "Max-Heap and Min-Heap implementations with priority queue logic.",
+                    code: `void heapify(int arr[], int n, int i) { ... }`,
+                    analysis: "Heaps maintain min/max elements in O(log n) time.",
+                    conclusion: "Created dynamic priority queues utilizing array-backed heaps."
+                },
+                {
+                    id: "hoa-13",
+                    title: "HOA 13.1",
+                    name: "Hash Tables & Chaining",
+                    status: "Completed",
+                    topic: "Hashing",
+                    desc: "Hash functions and collision handling mechanisms.",
+                    code: `int hashVal = key % TABLE_SIZE;`,
+                    analysis: "Effective hash functions yield constant O(1) average lookup times.",
+                    conclusion: "Evaluated collision resolution using linear probing and separate chaining."
+                },
+                {
+                    id: "hoa-14",
+                    title: "HOA 14.1",
+                    name: "Graph Representations",
+                    status: "Completed",
+                    topic: "Graphs",
+                    desc: "Adjacency Matrix and Adjacency List graph representations.",
+                    code: `vector<int> adj[V]; adj[u].push_back(v);`,
+                    analysis: "Adjacency lists optimize memory for sparse network graphs.",
+                    conclusion: "Constructed directional and non-directional graph models."
+                },
+                {
+                    id: "hoa-15",
+                    title: "HOA 15.1",
+                    name: "Graph Traversals (BFS & DFS)",
+                    status: "Completed",
+                    topic: "Graph Traversal",
+                    desc: "Breadth-First and Depth-First path exploration.",
+                    code: `void BFS(int start) { queue<int> q; q.push(start); ... }`,
+                    analysis: "BFS searches layer-by-layer; DFS explores paths deeply via stack recursion.",
+                    conclusion: "Implemented full graph searching and node connectivity algorithms."
+                }
+            ]
+        };
+
+        let currentPeriod = 'prelims';
+
+        // Initialize Lucide Icons & Page State
+        window.onload = function() {
+            lucide.createIcons();
+            switchTab('prelims');
+            generateMarkdownCode();
+        };
+
+        // --- Tab Switching Logic ---
+        function switchTab(period) {
+            currentPeriod = period;
+
+            // Update tab button styles
+            ['prelims', 'midterms', 'finals'].forEach(p => {
+                const btn = document.getElementById(`tab-${p}`);
+                if(p === period) {
+                    btn.className = "tab-btn active-tab flex flex-col items-center justify-center p-4 rounded-xl border border-accentBlue bg-accentBlue/10 text-accentBlue transition duration-200 shadow-md";
+                } else {
+                    btn.className = "tab-btn inactive-tab flex flex-col items-center justify-center p-4 rounded-xl border border-ghBorder bg-ghCard text-gray-400 hover:text-white hover:border-gray-600 transition duration-200";
+                }
+            });
+
+            // Update Header Text
+            const titles = { prelims: "PRELIMS Activities", midterms: "MIDTERMS Activities", finals: "FINALS Activities" };
+            document.getElementById('periodTitle').innerText = titles[period];
+            document.getElementById('periodBadge').innerText = `${activityData[period].length} Activities`;
+
+            // Render List
+            renderActivityList(period);
+        }
+
+        function renderActivityList(period) {
+            const container = document.getElementById('activityList');
+            container.innerHTML = '';
+
+            const list = activityData[period];
+
+            list.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "flex items-center justify-between p-3.5 rounded-lg border border-ghBorder bg-[#0d1117] hover:border-accentBlue/60 hover:bg-[#161b22] transition cursor-pointer group";
+                row.onclick = () => openModal(item);
+
+                row.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="text-accentBlue font-mono text-xs group-hover:text-white transition flex items-center space-x-1.5">
+                            <i data-lucide="code" class="w-4 h-4"></i>
+                            <span class="font-bold">${item.title}</span>
+                        </div>
+                        <span class="text-xs text-gray-500 hidden sm:inline">•</span>
+                        <span class="text-sm font-medium text-gray-200 group-hover:text-accentBlue transition">${item.name}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs px-2 py-0.5 rounded bg-ghBorder text-gray-400 font-mono hidden md:inline">${item.topic}</span>
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-accentGreen"></i>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            lucide.createIcons();
+        }
+
+        // --- Modal Control ---
+        let selectedActivity = null;
+
+        function openModal(item) {
+            selectedActivity = item;
+            document.getElementById('modalTitle').innerText = `${item.title}: ${item.name}`;
+            document.getElementById('modalDesc').innerText = item.desc;
+            document.getElementById('modalTopic').innerText = item.topic;
+            document.getElementById('modalCode').innerText = item.code;
+            document.getElementById('modalAnalysis').innerText = item.analysis;
+            document.getElementById('modalConclusion').innerText = item.conclusion;
+
+            document.getElementById('activityModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('activityModal').classList.add('hidden');
+        }
+
+        function toggleMarkdownModal() {
+            const modal = document.getElementById('markdownModal');
+            if(modal.classList.contains('hidden')) {
+                generateMarkdownCode();
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // --- Copy Functions & Toast ---
+        function copyCode() {
+            if(selectedActivity) {
+                copyToClipboard(selectedActivity.code, "C++ code copied!");
+            }
+        }
+
+        function copyMarkdownText() {
+            const text = document.getElementById('markdownOutput').value;
+            copyToClipboard(text, "README Markdown copied!");
+            
+            const btnText = document.getElementById('copyMdBtnText');
+            btnText.innerText = "Copied!";
+            setTimeout(() => { btnText.innerText = "Copy Markdown"; }, 2000);
+        }
+
+        function copyToClipboard(text, message) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showToast(message);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // --- Generate Exact Markdown as per User Template ---
+        function generateMarkdownCode() {
+            let md = `<div align="center">\n\n`;
+            md += `# CPE21S4 — DATA STRUCTURES AND ALGORITHMS\n\n`;
+            md += `### Hands-On Activities Compilation\n\n`;
+            md += `<img src="./Cat%20Coding%20GIF.gif" width="200" alt="Cat Coding GIF">\n\n`;
+            md += `---\n\n`;
+            md += `</div>\n\n`;
+
+            md += `## About This Repository\n\n`;
+            md += `This repository contains my Hands-On Activities (HOA) for CPE010: Data Structures and Algorithms. It includes the C++ outputs, screenshots, analysis, and conclusions. Each activity reflects my understanding of the lessons discussed in class.\n\n`;
+            md += `This compilation also serves as a record of my progress in developing programming skills, improving my problem-solving abilities, and understanding how data structures and algorithms work.\n\n`;
+
+            md += `## Objectives\n\n`;
+            md += `- Apply the programming concepts and techniques discussed in class.\n`;
+            md += `- Develop a better understanding of data structures and algorithms.\n`;
+            md += `- Organize and document completed activities for easy reference.\n`;
+            md += `- Track my learning progress throughout the course.\n\n`;
+
+            md += `## 🗂️ Activity Directory\n\n`;
+            md += `| Activity | Description | Status |\n`;
+            md += `|---|---|---|\n`;
+
+            ['prelims', 'midterms', 'finals'].forEach(period => {
+                activityData[period].forEach(act => {
+                    md += `| ${act.title} | *${act.name}* | Completed |\n`;
+                });
+            });
+
+            md += `\n---\n\n`;
+            md += `<div align="center">\n\n`;
+            md += `*Every activity is an opportunity to learn, develop new skills, and become a better programmer.*\n\n`;
+            md += `</div>`;
