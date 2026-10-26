@@ -1,7 +1,7 @@
-# 7777
-
 
 <div align="center">
+
+# 7777
 
 # CPE010 — DATA STRUCTURES AND ALGORITHMS
 
@@ -15,7 +15,9 @@
 
 <br>
 
-[📂 EXPLORE ACTIVITIES](#-explore-my-activities) · [💻 TECHNOLOGIES](#-technologies-used) · [🎯 LEARNING GOALS](#-learning-goals)
+<a href="#explore-my-activities">📂 EXPLORE ACTIVITIES</a> ·
+<a href="#technologies-used">💻 TECHNOLOGIES</a> ·
+<a href="#learning-goals">🎯 LEARNING GOALS</a>
 
 ---
 
@@ -31,6 +33,8 @@ My goal is to improve my programming skills, understand data structures, and lea
 
 ---
 
+<a id="explore-my-activities"></a>
+
 ## 📚 Explore My Activities
 
 Choose a term below to view its activities. Click the links to open the corresponding folder in this repository.
@@ -39,17 +43,17 @@ Choose a term below to view its activities. Click the links to open the correspo
   <tr>
     <td align="center" width="33%">
       <h3>📖 PRELIMS</h3>
-      <p>Start with the foundational activities and programming exercises.</p>
+      <p>Foundational activities and programming exercises.</p>
       <a href="./ACTIVITIES/PRELIMS/"><strong>EXPLORE PRELIMS →</strong></a>
     </td>
     <td align="center" width="33%">
       <h3>💻 MIDTERMS</h3>
-      <p>Explore the activities and exercises completed during midterms.</p>
+      <p>Activities and data structure exercises.</p>
       <a href="./ACTIVITIES/MIDTERMS/"><strong>EXPLORE MIDTERMS →</strong></a>
     </td>
     <td align="center" width="33%">
       <h3>🎓 FINALS</h3>
-      <p>View the final activities and programming outputs.</p>
+      <p>Final activities and programming outputs.</p>
       <a href="./ACTIVITIES/FINALS/"><strong>EXPLORE FINALS →</strong></a>
     </td>
   </tr>
@@ -73,6 +77,8 @@ Each term has its own folder to keep the activities organized and easy to find.
 
 ---
 
+<a id="technologies-used"></a>
+
 ## 🛠️ Technologies Used
 
 <p>
@@ -86,6 +92,8 @@ Each term has its own folder to keep the activities organized and easy to find.
 - **GitHub** — Platform for organizing and sharing this compilation.
 
 ---
+
+<a id="learning-goals"></a>
 
 ## 🎯 Learning Goals
 
